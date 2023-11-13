@@ -1,5 +1,5 @@
-var domainUrl = "http://yourdomain.com/";
-var sourceUrl = "http://yourdomain.com/public/storage/";
+var domainUrl = "http://sbzbackend.com/";
+var sourceUrl = "http://sbzbackend.com/public/storage/";
 
 var app = {
     EntervailedPasswordandUsername: "Enter vailed Password and Username ",
