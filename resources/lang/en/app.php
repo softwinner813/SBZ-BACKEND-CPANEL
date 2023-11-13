@@ -1,14 +1,14 @@
 <?php
 
 return [
-     'App_name' => "Orange",
+     'App_name' => "SocialBuzz",
      'Hello_admin' => "Hello admin",
      'Logout' => "Logout",
      'Main' => "Main",
      'Add_Image' => "Add Image",
      'Dashboard' => "Dashboard",
      'Users' => "Users",
-     'Orenge' =>  "Orange",
+     'Orenge' =>  "SocialBuzz",
      'Message_price' =>  "Message Price (Coins Per Message)",
      'Reverse_swipe_price' =>  "Reverse Swipe Price (Coins Per Swipe)",
      'Live_watching_price' =>  "Live Watching Price (Coins Per Minute)",
