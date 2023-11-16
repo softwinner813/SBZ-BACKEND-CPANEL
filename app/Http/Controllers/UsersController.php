@@ -1294,17 +1294,17 @@ class UsersController extends Controller
             }
             $result = $user->save();
 
-            // if ($req->file('image')) {
-            foreach ($req->file('image') as $img) {
-                $it = new Images();
-                $filename = $img->getClientOriginalName();
-                $path = $img->storeAs('uploads', $filename);
-                // $path = $img->store('uploads');
-                $it->image = $path;
-                $it->user_id = $req->user_id;
-                $it->save();
+            if ($req->file('image')) {
+                foreach ($req->file('image') as $img) {
+                    $it = new Images();
+                    $filename = $img->getClientOriginalName();
+                    $path = $img->storeAs('uploads', $filename);
+                    // $path = $img->store('uploads');
+                    $it->image = $path;
+                    $it->user_id = $req->user_id;
+                    $it->save();
+                }
             }
-            // }
 
 
 
