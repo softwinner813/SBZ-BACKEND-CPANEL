@@ -1,8 +1,8 @@
-// var domainUrl = "https://sbzbackend.com/";
-// var sourceUrl = "https://sbzbackend.com/storage/";
+var domainUrl = "https://sbzbackend.com/";
+var sourceUrl = "https://sbzbackend.com/storage/";
 
-var domainUrl = "http://192.168.2.4/";
-var sourceUrl = "http://192.168.2.4//storage/";
+// var domainUrl = "http://192.168.2.4/";
+// var sourceUrl = "http://192.168.2.4//storage/";
 
 var app = {
     EntervailedPasswordandUsername: "Enter vailed Password and Username ",
