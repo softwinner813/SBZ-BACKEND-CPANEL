@@ -93,7 +93,7 @@ class ReportController extends Controller
 
 
             if ($item->user->images[0] != null) {
-                $imgUrl = "public/storage/" . $item->user->images[0]->image;
+                $imgUrl = "/storage/" . $item->user->images[0]->image;
             } else {
                 $imgUrl = "http://placehold.jp/150x150.png";
             }

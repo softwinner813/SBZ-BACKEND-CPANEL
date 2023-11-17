@@ -96,7 +96,7 @@ class LiveApplicationController extends Controller
         foreach ($result as $item) {
 
             if (count($item->user->images) > 0) {
-                $image = '<img src="public/storage/' . $item->user->images[0]->image . '" width="50" height="50">';
+                $image = '<img src="/storage/' . $item->user->images[0]->image . '" width="50" height="50">';
             } else {
                 $image = '<img src="http://placehold.jp/150x150.png" width="50" height="50">';
             }
@@ -264,7 +264,7 @@ class LiveApplicationController extends Controller
             }
 
             if (count($item->user->images) > 0) {
-                $image = '<img src="public/storage/' . $item->user->images[0]->image . '" width="50" height="50">';
+                $image = '<img src="/storage/' . $item->user->images[0]->image . '" width="50" height="50">';
             } else {
                 $image = '<img src="http://placehold.jp/150x150.png" width="50" height="50">';
             }

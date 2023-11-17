@@ -91,7 +91,7 @@ class SettingController extends Controller
       $data = array();
       foreach ($result as $item) {
 
-         $image = '<img src="public/storage/' . $item->image . '" width="50" height="50">';
+         $image = '<img src="/storage/' . $item->image . '" width="50" height="50">';
          $imgUrl = env('image') . $item->image;
 
          if ($item->is_block == 0) {
