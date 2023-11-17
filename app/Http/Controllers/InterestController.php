@@ -91,7 +91,9 @@ class InterestController extends Controller
         if ($req->image == "") {
             Interest::where('id', $req->id)->update(['title' => Myfunction::customReplace($req->title)]);
         } else {
-            $path = $req->file('image')->store('uploads');
+            $filename = $req->file('image')->getClientOriginalName();
+            $path = $req->file('image')->storeAs('uploads', $filename);
+            // $path = $req->file('image')->store('uploads');
             Interest::where('id', $req->id)->update(['title' => Myfunction::customReplace($req->title), 'image' => $path]);
         }
 

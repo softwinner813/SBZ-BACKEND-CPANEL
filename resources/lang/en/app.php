@@ -23,6 +23,7 @@ return [
      'Dating_or_livestream' =>  "Dating/Livestream (Keep On for Dating App)",
      'Age' =>  "Age",
      'Gender' =>  "Gender",
+     'VIP' =>  "VIP",
      'Male' =>  "Male",
      'Female' =>  "Female",
      'UserAddSuccessful' =>  "User Add Successful",

@@ -25,7 +25,9 @@ class SettingController extends Controller
       $gift = Gifts::find($request->id);
       $gift->coin_price = $request->coin_price;
       if ($request->has('image')) {
-         $gift->image = $request->file('image')->store('uploads');
+         $filename = $request->file('image')->getClientOriginalName();
+         $gift->image = $request->file('image')->storeAs('uploads', $filename);
+         // $gift->image = $request->file('image')->store('uploads');
       }
       $gift->save();
 
@@ -35,7 +37,10 @@ class SettingController extends Controller
    function addGift(Request $request)
    {
       $gift = new Gifts();
-      $gift->image = $request->file('image')->store('uploads');
+
+      $filename = $request->file('image')->getClientOriginalName();
+      $gift->image = $request->file('image')->storeAs('uploads', $filename);
+      // $gift->image = $request->file('image')->store('uploads');
       $gift->coin_price = $request->coin_price;
       $gift->save();
 
@@ -115,7 +120,9 @@ class SettingController extends Controller
    }
    function storeFileGivePath(Request $request)
    {
-      $path = $request->file('file')->store('uploads');
+      $filename = $request->file('file')->getClientOriginalName();
+      $path = $request->file('file')->storeAs('uploads', $filename);
+      // $path = $request->file('file')->store('uploads');
       return json_encode(['status' => true, 'message' => __('app.Updatesuccessful'), 'path' => $path]);
    }
    function setting()

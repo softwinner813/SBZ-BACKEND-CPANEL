@@ -7,7 +7,8 @@
     <div class="card">
         <div class="card-header">
             <h4>{{ __('app.Users') }}</h4>
-            <a href="{{ route('addFakeUser') }}" id="add-fake-user" class="ml-auto btn btn-primary">{{ __('app.Add_fake_user') }}</a>
+            <a href="{{ route('addFakeUser') }}" id="add-fake-user"
+                class="ml-auto btn btn-primary">{{ __('app.Add_fake_user') }}</a>
         </div>
 
         <div class="card-body">
@@ -45,6 +46,7 @@
                                         <th>{{ __('app.Live_eligible') }}</th>
                                         <th>{{ __('app.Age') }}</th>
                                         <th>{{ __('app.Gender') }}</th>
+                                        <th>{{ __('app.VIP') }}</th>
                                         <th>{{ __('app.BlockUser') }}</th>
                                         <th>{{ __('app.ViewDetails') }}</th>
                                     </tr>
@@ -67,6 +69,7 @@
                                         <th>{{ __('app.Live_eligible') }}</th>
                                         <th>{{ __('app.Age') }}</th>
                                         <th>{{ __('app.Gender') }}</th>
+                                        <th>{{ __('app.VIP') }}</th>
                                         <th>{{ __('app.BlockUser') }}</th>
                                         <th>{{ __('app.ViewDetails') }}</th>
                                     </tr>
@@ -89,6 +92,7 @@
                                         <th>{{ __('app.Password') }}</th>
                                         <th>{{ __('app.Age') }}</th>
                                         <th>{{ __('app.Gender') }}</th>
+                                        <th>{{ __('app.VIP') }}</th>
                                         <th>{{ __('app.BlockUser') }}</th>
                                         <th>{{ __('app.ViewDetails') }}</th>
                                     </tr>

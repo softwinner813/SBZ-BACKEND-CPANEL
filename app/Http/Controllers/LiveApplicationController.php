@@ -329,7 +329,9 @@ class LiveApplicationController extends Controller
         }
 
         // Adding new applications
-        $videoPath = $request->file('intro_video')->store('uploads');
+        $filename = $request->file('intro_video')->getClientOriginalName();
+        $videoPath = $request->file('intro_video')->storeAs('uploads', $filename);
+        // $videoPath = $request->file('intro_video')->store('uploads');
         $liveApplication = new LiveApplications();
         $liveApplication->user_id = $request->user_id;
         $liveApplication->about_you = $request->about_you;

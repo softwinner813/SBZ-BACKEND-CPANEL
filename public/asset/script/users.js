@@ -15,7 +15,7 @@ $(document).ready(function () {
         ],
         ajax: {
             url: `${domainUrl}fetchAllUsers`,
-            data: function (data) {},
+            data: function (data) { },
             error: (error) => {
                 console.log(error);
             },
@@ -35,7 +35,7 @@ $(document).ready(function () {
         ],
         ajax: {
             url: `${domainUrl}fetchStreamerUsers`,
-            data: function (data) {},
+            data: function (data) { },
             error: (error) => {
                 console.log(error);
             },
@@ -55,7 +55,7 @@ $(document).ready(function () {
         ],
         ajax: {
             url: `${domainUrl}fetchFakeUsers`,
-            data: function (data) {},
+            data: function (data) { },
             error: (error) => {
                 console.log(error);
             },
@@ -144,6 +144,97 @@ $(document).ready(function () {
                 }
             } else {
                 swal(app.thisusernotunblock);
+            }
+        });
+    });
+
+    /********************************************
+     * SET/REMOVE VIP
+     */
+
+    $(document).on("click", ".vip", function (event) {
+        event.preventDefault();
+        console.log("👌 ---- VIP CLICKED -------");
+        swal({
+            title: app.sure,
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        }).then((willDelete) => {
+            if (willDelete) {
+                swal(app.thisusermarkedasvip, {
+                    icon: "success",
+                });
+
+                if (user_type == "1") {
+                    var element = $(this).parent();
+
+                    var id = $(this).attr("rel");
+                    var delete_cat_url = `${domainUrl}vipUser` + "/" + id;
+
+                    $.getJSON(delete_cat_url).done(function (data) {
+                        console.log(data);
+                        $("#UsersTable").DataTable().ajax.reload(null, false);
+                        $("#FakeUsersTable")
+                            .DataTable()
+                            .ajax.reload(null, false);
+                        $("#StreamersTable")
+                            .DataTable()
+                            .ajax.reload(null, false);
+                    });
+                } else {
+                    iziToast.error({
+                        title: `${app.Error}!`,
+                        message: app.tester,
+                        position: "topRight",
+                    });
+                }
+            } else {
+                swal(app.thisusernotvip);
+            }
+        });
+    });
+
+    $(document).on("click", ".unvip", function (event) {
+        event.preventDefault();
+        console.log("👍 ---- UNVIP CLICKED -------");
+
+        swal({
+            title: app.sure,
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        }).then((willDelete) => {
+            if (willDelete) {
+                swal(app.thisusermarkedasnormal, {
+                    icon: "success",
+                });
+
+                if (user_type == "1") {
+                    var element = $(this).parent();
+
+                    var id = $(this).attr("rel");
+                    var delete_cat_url = `${domainUrl}unvipUser` + "/" + id;
+
+                    $.getJSON(delete_cat_url).done(function (data) {
+                        console.log(data);
+                        $("#UsersTable").DataTable().ajax.reload(null, false);
+                        $("#FakeUsersTable")
+                            .DataTable()
+                            .ajax.reload(null, false);
+                        $("#StreamersTable")
+                            .DataTable()
+                            .ajax.reload(null, false);
+                    });
+                } else {
+                    iziToast.error({
+                        title: `${app.Error}!`,
+                        message: app.tester,
+                        position: "topRight",
+                    });
+                }
+            } else {
+                swal(app.thisusernotunvip);
             }
         });
     });

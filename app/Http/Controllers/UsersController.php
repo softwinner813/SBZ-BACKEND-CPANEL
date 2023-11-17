@@ -82,7 +82,9 @@ class UsersController extends Controller
     {
         $img = new Images();
         $imgfile = $req->file('image');
-        $path = $imgfile->store('uploads');
+        $filename = $imgfile->getClientOriginalName();
+        $path = $imgfile->storeAs('uploads', $filename);
+        // $path = $imgfile->store('uploads');
         $img->image = $path;
         $img->user_id = $req->id;
         $img->save();
@@ -165,7 +167,9 @@ class UsersController extends Controller
         $user->save();
         foreach ($request->file('image') as $img) {
             $it = new Images();
-            $path = $img->store('uploads');
+            $filename = $img->getClientOriginalName();
+            $path = $img->storeAs('uploads', $filename);
+            // $path = $img->store('uploads');
             $it->image = $path;
             $it->user_id = $user->id;
             $it->save();
@@ -460,8 +464,13 @@ class UsersController extends Controller
         $verifyReq->document_type = $request->document_type;
         $verifyReq->fullname = $request->fullname;
         $verifyReq->status = 0;
-        $verifyReq->document = $request->file('document')->store('uploads');
-        $verifyReq->selfie = $request->file('selfie')->store('uploads');
+        $filename = $request->file('document')->getClientOriginalName();
+        $verifyReq->document = $request->file('document')->storeAs('uploads', $filename);
+        // $verifyReq->document = $request->file('document')->store('uploads');
+
+        $selfieFileName = $request->file('selfie')->getClientOriginalName();
+        $verifyReq->selfie = $request->file('selfie')->storeAs('uploads', $selfieFileName);
+        // $verifyReq->selfie = $request->file('selfie')->store('uploads');
         $verifyReq->save();
 
         $user->is_verified = 1;
@@ -876,6 +885,12 @@ class UsersController extends Controller
                 $block  =  '<a class=" btn btn-success  text-white unblock " rel=' . $item->id . ' >' . __('app.Unblock') . '</a>';
             }
 
+            if ($item->vip == 0) {
+                $vip  =  '<a class=" btn btn-dark text-white vip" rel=' . $item->id . ' >' . __('app.VIP') . '</a>';
+            } else {
+                $vip  =  '<a class=" btn btn-danger  text-white unvip " rel=' . $item->id . ' >' . __('app.VIP') . '</a>';
+            }
+
             if ($item->gender == 1) {
                 $gender = ' <span  class="badge bg-dark text-white  ">' . __('app.Male') . '</span>';
             } else {
@@ -883,7 +898,7 @@ class UsersController extends Controller
             }
 
             if (count($item->images) > 0) {
-                $image = '<img src="public/storage/' . $item->images[0]->image . '" width="50" height="50">';
+                $image = '<img src="/storage/' . $item->images[0]->image . '" width="50" height="50">';
             } else {
                 $image = '<img src="http://placehold.jp/150x150.png" width="50" height="50">';
             }
@@ -905,6 +920,7 @@ class UsersController extends Controller
                 $liveEligible,
                 $item->age,
                 $gender,
+                $vip,
                 $block,
                 $action,
 
@@ -972,6 +988,12 @@ class UsersController extends Controller
                 $block  =  '<a class=" btn btn-success  text-white unblock " rel=' . $item->id . ' >' . __('app.Unblock') . '</a>';
             }
 
+            if ($item->vip == 0) {
+                $vip  =  '<a class=" btn btn-dark text-white vip" rel=' . $item->id . ' >' . __('app.VIP') . '</a>';
+            } else {
+                $vip  =  '<a class=" btn btn-danger  text-white unvip " rel=' . $item->id . ' >' . __('app.VIP') . '</a>';
+            }
+
             if ($item->gender == 1) {
                 $gender = ' <span  class="badge bg-dark text-white  ">' . __('app.Male') . '</span>';
             } else {
@@ -1001,6 +1023,7 @@ class UsersController extends Controller
                 $liveEligible,
                 $item->age,
                 $gender,
+                $vip,
                 $block,
                 $action,
 
@@ -1067,6 +1090,12 @@ class UsersController extends Controller
                 $block  =  '<a class=" btn btn-success  text-white unblock " rel=' . $item->id . ' >' . __('app.Unblock') . '</a>';
             }
 
+            if ($item->vip == 0) {
+                $vip  =  '<a class=" btn btn-dark text-white vip" rel=' . $item->id . ' >' . __('app.VIP') . '</a>';
+            } else {
+                $vip  =  '<a class=" btn btn-danger  text-white unvip " rel=' . $item->id . ' >' . __('app.VIP') . '</a>';
+            }
+
             if ($item->gender == 1) {
                 $gender = ' <span  class="badge bg-dark text-white  ">' . __('app.Male') . '</span>';
             } else {
@@ -1088,6 +1117,7 @@ class UsersController extends Controller
                 $item->password,
                 $item->age,
                 $gender,
+                $vip,
                 $block,
                 $action,
 
@@ -1328,6 +1358,26 @@ class UsersController extends Controller
     function unblockUser($id)
     {
         Users::where('id', $id)->update(['is_block' => 0]);
+
+        return response()->json(['status' => true, 'message' => __('app.Updatesuccessful')]);
+    }
+
+    /***********************
+     * VIP
+     */
+    function vipUser($id)
+    {
+        Users::where('id', $id)->update(['vip' => 1]);
+        Report::where('user_id', $id)->delete();
+        return response()->json(['status' => true, 'message' => __('app.Updatesuccessful')]);
+    }
+
+    /**************************
+     * Remove VIP
+     */
+    function unvipUser($id)
+    {
+        Users::where('id', $id)->update(['vip' => 0]);
 
         return response()->json(['status' => true, 'message' => __('app.Updatesuccessful')]);
     }

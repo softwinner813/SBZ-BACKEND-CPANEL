@@ -49,8 +49,13 @@ Route::post('fetchStreamerUsers', [UsersController::class, 'fetchStreamerUsers']
 Route::post('fetchFakeUsers', [UsersController::class, 'fetchFakeUsers'])->middleware(['checkLogin'])->name('fetchFakeUsers');
 
 Route::get('blockUser/{id}', [UsersController::class, 'blockUser'])->middleware(['checkLogin'])->name('blockUser');
-Route::get('deleteUserImage/{id}', [UsersController::class, 'deleteUserImage'])->middleware(['checkLogin'])->name('deleteUserImage');
 Route::get('unblockUser/{id}', [UsersController::class, 'unblockUser'])->middleware(['checkLogin'])->name('unblockUser');
+
+Route::get('vipUser/{id}', [UsersController::class, 'vipUser'])->middleware(['checkLogin'])->name('vipUser');
+Route::get('unvipUser/{id}', [UsersController::class, 'unvipUser'])->middleware(['checkLogin'])->name('unvipUser');
+
+
+Route::get('deleteUserImage/{id}', [UsersController::class, 'deleteUserImage'])->middleware(['checkLogin'])->name('deleteUserImage');
 Route::get('viewUserDetails/{id}', [UsersController::class, 'viewUserDetails'])->middleware(['checkLogin'])->name('viewUserDetails');
 Route::get('allowLiveToUser/{id}', [UsersController::class, 'allowLiveToUser'])->middleware(['checkLogin'])->name('allowLiveToUser');
 Route::get('restrictLiveToUser/{id}', [UsersController::class, 'restrictLiveToUser'])->middleware(['checkLogin'])->name('restrictLiveToUser');
