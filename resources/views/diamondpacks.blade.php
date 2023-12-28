@@ -55,7 +55,7 @@
 
                         <div class="form-group">
                             <label> {{ __('app.Price') }}</label>
-                            <input type="number" name="price" class="form-control" required>
+                            <input type="number" name="price" step="0.01" class="form-control" required>
                         </div>
 
                         <div class="form-group">
@@ -103,7 +103,8 @@
 
                         <div class="form-group">
                             <label> {{ __('app.Price') }}</label>
-                            <input type="number" id="edit_price" name="price" class="form-control" required>
+                            <input type="number" id="edit_price" step="0.01" name="price" class="form-control"
+                                required>
                         </div>
 
                         <div class="form-group">
